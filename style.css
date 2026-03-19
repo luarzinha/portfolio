@@ -186,17 +186,17 @@ body.dark-mode header{background:#2a1c24;}
 
 body.dark-mode .hero{background:linear-gradient(135deg,#1c1c1c,#2a1c24,#1c1c1c);}
 
-body.dark-mode #about{background:#1a1a1a;}
+body.dark-mode #about{background:#1f0d14c5;}
 
-body.dark-mode #skills{background:linear-gradient(180deg,#1c1c1c,#2a1c24);}
+body.dark-mode #skills{background:linear-gradient(180deg,#1c1c1c,#1f0d14c5);}
 
 body.dark-mode #projects{background:linear-gradient(135deg,#1c1c1c,#2a1c24,#1c1c1c);}
 
 body.dark-mode #contact{background:#1a1a1a;}
 
-body.dark-mode .card{background:#242424;color:#e4e4e4;}
+body.dark-mode .card{background:#582339c5;color:#e4e4e4;}
 
-body.dark-mode footer{background:#2a1c24;}
+body.dark-mode footer{background:#582339c5;}
 
 body.dark-mode .contact-card{background:#1e1e1e;color:#eee;}
 
@@ -225,7 +225,6 @@ grid-template-columns:1fr;
 
 .hero{flex-direction:column;text-align:center;}
 
-.contact-container{grid-template-columns:1fr;}
 
 .projects{grid-template-columns:1fr;}
 
