@@ -152,6 +152,93 @@ body.dark-mode input {
   border-color: #ff79b0;
 }
 
+body.dark-mode .card {
+  background: #2a1c24;
+}
+
+body.dark-mode .card h3 {
+  color: #fff;
+}
+
+body.dark-mode .rating {
+  color: #ff79b0;
+}
+
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 25px;
+  padding: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.card {
+  background: #a07575;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 8px 25px rgba(119, 74, 74, 0.3);
+}
+
+.card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 23px 40px rgba(0,0,0,0.6);
+}
+
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 12px;
+}
+
+.card h3 {
+  font-family:"Outfit", sans-serif;
+  font-size: 18px;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.rating {font-family:"Outfit", sans-serif;
+  font-size: 20px;
+  color: #eeeced;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(109, 28, 55, 0.8), transparent);
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* RESPONSIVIDADE */
 
 @media (max-width: 600px) {
@@ -169,3 +256,4 @@ body.dark-mode input {
     margin-left: 0;
   }
 }
+
