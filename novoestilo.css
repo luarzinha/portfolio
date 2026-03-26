@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Outfit:wght@300;500;700&display=swap');
+
+* {box-sizing: border-box;margin: 0;padding: 0;}
+
+html {scroll-behavior: smooth;}
+
+
+body {
+  font-family: "Outfit", sans-serif;
+  background: white;
+  padding-top: 100px; 
+   margin: 0;
+
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #6b4c5a;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  z-index: 10;
+  height: 80px;
+}
+
+#title {font-family: "Outfit", sans-serif;}
+
+nav {margin-top: 10px;}
+
+nav a {color: #eda8c8;text-decoration: none;margin: 0 10px;}
+
+nav a:hover {color: #ffd1e6;}
+
+
+
+#themetoggle {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+
+main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;    
+}
+
+h1 {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 60px;
+  color: #af3e6dc5;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+h1::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: #eda8c8;
+  margin: 10px auto;
+}
+
+/* PESQUISA DOS JOGUITOS */
+
+.search-box {
+  margin-top: 30px;
+}
+
+.search-box input {
+  padding: 12px 20px;
+  width: 70%;
+  max-width: 400px;
+  border-radius: 25px;
+  border: 2px solid #eda8c8;
+  outline: none;
+  font-size: 16px;
+}
+
+.search-box input:focus {
+  border-color: #d48aaa;
+}
+
+.search-box button {
+  padding: 12px 20px;
+  border-radius: 25px;
+  border: none;
+  background: #eda8c8;
+  color: white;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: 0.3s;
+}
+
+.search-box button:hover {
+  background: #d48aaa;
+}
+
+/* RESULTADOS */
+
+.results {
+  margin-top: 40px;
+  display: grid;
+  gap: 20px;
+}
+
+.card {
+  background: #f9f4f7;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  text-align: left;
+}
+
+.card h3 {
+  font-family: "Cinzel", serif;
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #555;
+}
+
+/* MODO ESCURO  */
+
+body.dark-mode {
+  background: #121212;
+  color: #e4e4e4;
+}
+
+body.dark-mode header {
+  background: #2a1c24;
+}
+
+body.dark-mode .card {
+  background: #2a1c24;
+  color: #eee;
+}
+
+body.dark-mode input {
+  background: #1e1e1e;
+  color: white;
+  border-color: #ff79b0;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 32px;
+  }
+
+  .search-box input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .search-box button {
+    width: 100%;
+    margin-left: 0;
+  }
+}

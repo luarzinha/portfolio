@@ -204,6 +204,62 @@ body.dark-mode .contact-card a{color:#ff79b0;}
 
 
 
+/*PAGINA DE PROCURAR GAMES*/
+
+
+.fadebox {
+  height: 30px;
+  overflow: hidden;
+}
+
+span {
+  display: inline-block;
+  font-size: 21px;
+  font-family: sans-serif;
+  line-height: 30px;
+  text-decoration: underline;
+  transform: translateY(30px);
+  animation: fadeInText 300ms 0ms forwards;
+}
+span:nth-child(2) {
+  animation-delay: 150ms;
+}
+
+span:nth-child(3) {
+  animation-delay: 300ms;
+}
+
+@keyframes fadeInText {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media (max-width:900px){
 
 .contact-container{

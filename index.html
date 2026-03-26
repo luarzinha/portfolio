@@ -6,10 +6,11 @@
     <title>Portfólio | Bruna Menezes</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="sobre/favicon.ico">
+    <script src="script.js"></script>
 
 </head>
-<body>
 
+<body>
 <header>
 <h2 id="title">Portfólio</h2>
 
@@ -18,7 +19,8 @@
 <a href="#about">About</a> |
 <a href="#skills">Skills</a> |
 <a href="#projects">Projects</a> |
-<a href="#contact">Contacts</a>
+<a href="#contact">Contacts</a> |
+<a href="Games.html">Games</a>
 <button id="themetoggle">🌙</button>
 </nav>
 </header>
@@ -160,6 +162,7 @@ bruna.menezes2000@gmail.com
 
 </section>
 
+</body>
 
 <footer>
 <p>© Bruna Menezes | 2026</p>
@@ -167,27 +170,9 @@ bruna.menezes2000@gmail.com
 
 
 
-
 <script>
 
-function showSkill(skill){
 
-let images = document.querySelectorAll(".skill-display img");
-let buttons = document.querySelectorAll(".skills button");
-
-images.forEach(img=>{
-img.classList.remove("active");
-});
-
-buttons.forEach(btn=>{
-btn.classList.remove("active");
-});
-
-document.getElementById(skill).classList.add("active");
-
-event.target.classList.add("active");
-
-}
 const themeButton = document.getElementById("themetoggle");
 
 themeButton.addEventListener("click", () => {
@@ -218,5 +203,4 @@ themeButton.textContent = "🌚";
 };
 
 </script>
-</body>
 </html>
