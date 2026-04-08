@@ -1,81 +1,95 @@
-function showSkill(skill){
+// 🔹 SKILLS
+function showSkill(skill, element){
+  let images = document.querySelectorAll(".skill-display img");
+  let buttons = document.querySelectorAll(".skills button");
 
-let images = document.querySelectorAll(".skill-display img");
-let buttons = document.querySelectorAll(".skills button");
+  images.forEach(img => img.classList.remove("active"));
+  buttons.forEach(btn => btn.classList.remove("active"));
 
-images.forEach(img=>{
-img.classList.remove("active");
-});
-
-buttons.forEach(btn=>{
-btn.classList.remove("active");
-});
-
-document.getElementById(skill).classList.add("active");
-
-target.classList.add("active");
+  document.getElementById(skill).classList.add("active");
+  element.classList.add("active");
 }
 
-/*API PARA PESQUISAR OS JOGUITOS*/ 
-
+// API JOGOS
 const API_KEY = "4773797357194adeb2b447f6587733ba";
+const input = document.getElementById("searchInput");
+const button = document.getElementById("btn");
+const resultados = document.getElementById("resultados");
 
-document.getElementById("btn").addEventListener("click", async () => {
-  console.log("clicou");
+const modal = document.getElementById("modal");
+const modalBody = document.getElementById("modal-body");
+const closeBtn = document.getElementById("close");
 
- document.getElementById("searchInput")
-  .addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-      document.getElementById("btn").click();
-    }
-  });
+// FECHAR MODAL
+closeBtn.onclick = () => modal.style.display="none";
+window.onclick = (e)=>{if(e.target===modal) modal.style.display="none";};
 
-  const resultados = document.getElementById("resultados");
-  resultados.innerHTML = "Carregando...";
+// ENTER PARA PESQUISAR
+input.addEventListener("keypress", (e)=>{if(e.key==="Enter") button.click();});
 
-  try {
-   const query = document.getElementById("searchInput").value;
+// PESQUISAR JOGOS
+button.addEventListener("click", async ()=>{
+  resultados.innerHTML="Carregando...";
+  resultados.classList.add("grid");
 
-const response = await fetch(
-  `https://api.rawg.io/api/games?key=${API_KEY}&search=${query}&page_size=10`
-);
-    
-    console.log("status:", response.status);
+  try{
+    const query = input.value;
+    const res = await fetch(`https://api.rawg.io/api/games?key=${API_KEY}&search=${query}&page_size=10`);
+    const data = await res.json();
+    resultados.innerHTML="";
 
-    const data = await response.json();
+    if(!data.results || data.results.length===0){resultados.innerHTML="Sem resultados"; return;}
 
-    console.log("dados:", data);
+    data.results.forEach(game=>{
+      const div = document.createElement("div");
+      div.classList.add("card");
 
-    resultados.innerHTML = "";
+      const dataFormatada = game.released ? new Date(game.released).toLocaleDateString("pt-PT") : "Data desconhecida";
 
-    if (!data.results) {
-      resultados.innerHTML = "Sem resultados";
-      return;
-    }
+      div.innerHTML=`
+        <img src="${game.background_image || 'https://via.placeholder.com/300x160'}">
+        <div class="card-content">
+          <h3>${game.name}</h3>
+          <p class="rating">⭐ ${game.rating}</p>
+          <p class="date">📅 ${dataFormatada}</p>
+        </div>
+      `;
 
-   data.results.forEach(game => {
-  const div = document.createElement("div");
+      // CLICK CARD → ABRIR MODAL COM DETALHES COMPLETOS
+div.addEventListener("click", async ()=>{
+  modal.style.display="flex";
+  modalBody.innerHTML="Carregando detalhes...";
 
-  div.style.border = "1px solid #ccc";
-  div.style.margin = "10px";
-  div.style.padding = "10px";
-  div.style.width = "200px";
+  try{
+    const res2 = await fetch(`https://api.rawg.io/api/games/${game.id}?key=${API_KEY}`);
+    const details = await res2.json();
 
-div.classList.add("card");
+    const screenshots = details.short_screenshots?.map(s=>`<img src="${s.image}" style="width:100%; margin-bottom:8px;">`).join("") || "";
 
-div.innerHTML = `
-  <img src="${game.background_image || 'https://via.placeholder.com/300x160'}">
-  <div class="card-content">
-    <h3>${game.name}</h3>
-    <p class="rating">⭐ ${game.rating}</p>
-  </div>
-`;
-
-  resultados.appendChild(div);
+    modalBody.innerHTML = `
+      <div class="modal-image">
+        <img src="${details.background_image || 'https://via.placeholder.com/300x160'}">
+        ${screenshots}
+      </div>
+      <div class="modal-text">
+        <h2>${details.name}</h2>
+        <p>⭐ Rating: ${details.rating}</p>
+        <p>📅 Lançamento: ${details.released || 'Desconhecida'}</p>
+        <p><strong>🎮 Plataformas:</strong> ${details.platforms?.map(p=>p.platform.name).join(", ") || 'N/A'}</p>
+        <p><strong>🎭 Géneros:</strong> ${details.genres?.map(g=>g.name).join(", ") || 'N/A'}</p>
+        <p style="margin-top:10px;">${details.description_raw || 'Sem descrição'}</p>
+      </div>
+    `;
+  } catch(err){
+    modalBody.innerHTML="Erro ao carregar detalhes";
+  }
 });
 
-  } catch (err) {
-    console.error("ERRO:", err);
-    resultados.innerHTML = "Erro ao buscar jogos";
+      resultados.appendChild(div);
+    });
+
+  }catch(err){
+    resultados.innerHTML="Erro ao buscar jogos";
+    console.error(err);
   }
 });
